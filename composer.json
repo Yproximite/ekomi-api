@@ -10,8 +10,8 @@
     "php-http/discovery": "^1.0"
   },
   "autoload": {
-    "psr-0": {
-      "Yproximite\\Ekomi\\Api": "src/Yproximite/Ekomi/Api"
+    "psr-4": {
+      "Yproximite\\Ekomi\\Api": "src/Api"
     }
   }
 }

@@ -83,6 +83,8 @@ class Order
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
+        return $this;
     }
 
     /**
@@ -101,6 +103,8 @@ class Order
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+
+        return $this;
     }
 
     /**
@@ -119,6 +123,8 @@ class Order
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
+
+        return $this;
     }
 
     /**
@@ -137,6 +143,8 @@ class Order
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
@@ -155,6 +163,8 @@ class Order
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
@@ -173,6 +183,8 @@ class Order
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
@@ -191,6 +203,8 @@ class Order
     public function setCustomData(OrderCustomData $customData)
     {
         $this->customData = $customData;
+
+        return $this;
     }
 
     /**
@@ -209,6 +223,8 @@ class Order
     public function setRegisterDate(\DateTime $registerDate)
     {
         $this->registerDate = $registerDate;
+
+        return $this;
     }
 
     /**
@@ -227,6 +243,8 @@ class Order
     public function setEndCustomerContactDate(\DateTime $endCustomerContactDate)
     {
         $this->endCustomerContactDate = $endCustomerContactDate;
+
+        return $this;
     }
 
     /**
@@ -245,6 +263,8 @@ class Order
     public function setProductIds(array $productIds)
     {
         $this->productIds = $productIds;
+
+        return $this;
     }
 
     /**
@@ -263,6 +283,8 @@ class Order
     public function setReviewLink($reviewLink)
     {
         $this->reviewLink = $reviewLink;
+
+        return $this;
     }
 
     /**
@@ -281,5 +303,7 @@ class Order
     public function setFeedback(Feedback $feedback)
     {
         $this->feedback = $feedback;
+
+        return $this;
     }
 }

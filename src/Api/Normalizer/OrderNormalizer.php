@@ -17,13 +17,26 @@ class OrderNormalizer implements NormalizerInterface
     public function normalize($data)
     {
         $orderCustomData = new OrderCustomData();
-        $orderCustomData
-            ->setClientId($data['custom_data']['client_id'])
-            ->setTransactionDate(new \DateTime($data['custom_data']['transaction_date']))
-            ->setProjectType($data['custom_data']['project_type'])
-            ->setProjectLocation($data['custom_data']['project_location'])
-            ->setVendorId($data['custom_data']['vendor_id'])
-        ;
+
+        if (array_key_exists('client_id', $data['custom_data'])) {
+            $orderCustomData->setClientId($data['custom_data']['client_id']);
+        }
+
+        if (array_key_exists('transaction_date', $data['custom_data'])) {
+            $orderCustomData->setTransactionDate(new \DateTime($data['custom_data']['transaction_date']));
+        }
+
+        if (array_key_exists('project_type', $data['custom_data'])) {
+            $orderCustomData->setProjectType($data['custom_data']['project_type']);
+        }
+
+        if (array_key_exists('project_location', $data['custom_data'])) {
+            $orderCustomData->setProjectLocation($data['custom_data']['project_location']);
+        }
+
+        if (array_key_exists('vendor_id', $data['custom_data'])) {
+            $orderCustomData->setVendorId($data['custom_data']['vendor_id']);
+        }
 
         $feedback = new Feedback();
         $feedback

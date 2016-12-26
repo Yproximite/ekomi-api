@@ -8,32 +8,32 @@ namespace Yproximite\Ekomi\Api\Model;
 class OrderCustomData
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $clientId;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     private $transactionDate;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $projectType;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $projectLocation;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $vendorId;
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getClientId()
     {
@@ -41,7 +41,7 @@ class OrderCustomData
     }
 
     /**
-     * @param string $clientId
+     * @param string|null $clientId
      *
      * @return OrderCustomData
      */
@@ -53,7 +53,7 @@ class OrderCustomData
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getTransactionDate()
     {
@@ -61,11 +61,11 @@ class OrderCustomData
     }
 
     /**
-     * @param \DateTime $transactionDate
+     * @param \DateTime|null $transactionDate
      *
      * @return OrderCustomData
      */
-    public function setTransactionDate(\DateTime $transactionDate)
+    public function setTransactionDate(\DateTime $transactionDate = null)
     {
         $this->transactionDate = $transactionDate;
 
@@ -73,7 +73,7 @@ class OrderCustomData
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getProjectType()
     {
@@ -81,7 +81,7 @@ class OrderCustomData
     }
 
     /**
-     * @param string $projectType
+     * @param string|null $projectType
      *
      * @return OrderCustomData
      */
@@ -93,7 +93,7 @@ class OrderCustomData
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getProjectLocation()
     {
@@ -101,7 +101,7 @@ class OrderCustomData
     }
 
     /**
-     * @param string $projectLocation
+     * @param string|null $projectLocation
      *
      * @return OrderCustomData
      */
@@ -113,7 +113,7 @@ class OrderCustomData
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getVendorId()
     {
@@ -121,7 +121,7 @@ class OrderCustomData
     }
 
     /**
-     * @param string $vendorId
+     * @param string|null $vendorId
      *
      * @return OrderCustomData
      */

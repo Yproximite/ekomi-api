@@ -11,9 +11,9 @@ use Yproximite\Ekomi\Api\Exception\InvalidArgumentException;
 class CollectionNormalizer implements NormalizerInterface
 {
     /**
-     * @var CollectionInterface
+     * @var string
      */
-    private $collection;
+    private $collectionClass;
 
     /**
      * @var NormalizerInterface
@@ -23,13 +23,13 @@ class CollectionNormalizer implements NormalizerInterface
     /**
      * TraversableNormalizer constructor.
      *
-     * @param CollectionInterface $collection
+     * @param string              $collectionClass
      * @param NormalizerInterface $itemNormalizer
      */
-    public function __construct(CollectionInterface $collection, NormalizerInterface $itemNormalizer)
+    public function __construct($collectionClass, NormalizerInterface $itemNormalizer)
     {
-        $this->collection     = $collection;
-        $this->itemNormalizer = $itemNormalizer;
+        $this->collectionClass = $collectionClass;
+        $this->itemNormalizer  = $itemNormalizer;
     }
 
     /**
@@ -41,10 +41,12 @@ class CollectionNormalizer implements NormalizerInterface
             throw new InvalidArgumentException('Data must be an array or an instance of \\Traversable.');
         }
 
+        $items = [];
+
         foreach ($data as $item) {
-            $this->collection[] = $this->itemNormalizer->normalize($item);
+            $items[] = $this->itemNormalizer->normalize($item);
         }
 
-        return $this->collection;
+        return new $this->collectionClass($items);
     }
 }

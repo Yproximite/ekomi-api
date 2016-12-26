@@ -16,35 +16,52 @@ class OrderNormalizer implements NormalizerInterface
      */
     public function normalize($data)
     {
+        $clientId = array_key_exists('client_id', $data['custom_data'])
+            ? $data['custom_data']['client_id']
+            : null
+        ;
+        $transactionDate = array_key_exists('transaction_date', $data['custom_data'])
+            ? new \DateTime($data['custom_data']['transaction_date'])
+            : null
+        ;
+        $projectType = array_key_exists('project_type', $data['custom_data'])
+            ? $data['custom_data']['project_type']
+            : null
+        ;
+        $projectLocation = array_key_exists('project_location', $data['custom_data'])
+            ? $data['custom_data']['project_location']
+            : null
+        ;
+        $vendorId = array_key_exists('vendor_id', $data['custom_data'])
+            ? $data['custom_data']['vendor_id']
+            : null
+        ;
+
         $orderCustomData = new OrderCustomData();
+        $orderCustomData
+            ->setClientId($clientId)
+            ->setTransactionDate($transactionDate)
+            ->setProjectType($projectType)
+            ->setProjectLocation($projectLocation)
+            ->setVendorId($vendorId)
+        ;
 
-        if (array_key_exists('client_id', $data['custom_data'])) {
-            $orderCustomData->setClientId($data['custom_data']['client_id']);
-        }
-
-        if (array_key_exists('transaction_date', $data['custom_data'])) {
-            $orderCustomData->setTransactionDate(new \DateTime($data['custom_data']['transaction_date']));
-        }
-
-        if (array_key_exists('project_type', $data['custom_data'])) {
-            $orderCustomData->setProjectType($data['custom_data']['project_type']);
-        }
-
-        if (array_key_exists('project_location', $data['custom_data'])) {
-            $orderCustomData->setProjectLocation($data['custom_data']['project_location']);
-        }
-
-        if (array_key_exists('vendor_id', $data['custom_data'])) {
-            $orderCustomData->setVendorId($data['custom_data']['vendor_id']);
-        }
+        $comment = array_key_exists('comment', $data['feedback']) ? $data['feedback']['comment'] : null;
 
         $feedback = new Feedback();
         $feedback
             ->setEndCustomerSubmitDate(new \DateTime($data['feedback']['end_customer_submit_date']))
-            ->setRating($data['rating'])
-            ->setReview($data['review'])
-            ->setComment($data['comment'])
+            ->setRating($data['feedback']['rating'])
+            ->setReview($data['feedback']['review'])
+            ->setComment($comment)
         ;
+
+        $endCustomerContactDate = array_key_exists('end_customer_contact_date', $data)
+            ? new \DateTime($data['end_customer_contact_date'])
+            : null
+        ;
+
+        $reviewLink = array_key_exists('review_link', $data) ? $data['review_link'] : null;
 
         $order = new Order();
         $order
@@ -56,9 +73,9 @@ class OrderNormalizer implements NormalizerInterface
             ->setEmail($data['email'])
             ->setCustomData($orderCustomData)
             ->setRegisterDate(new \DateTime($data['register_date']))
-            ->setEndCustomerContactDate(new \DateTime($data['end_customer_contact_date']))
+            ->setEndCustomerContactDate($endCustomerContactDate)
             ->setProductIds($data['product_ids'])
-            ->setReviewLink($data['review_link'])
+            ->setReviewLink($reviewLink)
             ->setFeedback($feedback)
         ;
 

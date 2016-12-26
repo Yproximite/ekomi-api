@@ -48,7 +48,7 @@ class Order
     private $registerDate;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     private $endCustomerContactDate;
 
@@ -58,7 +58,7 @@ class Order
     private $productIds;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $reviewLink;
 
@@ -228,7 +228,7 @@ class Order
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getEndCustomerContactDate()
     {
@@ -236,11 +236,11 @@ class Order
     }
 
     /**
-     * @param \DateTime $endCustomerContactDate
+     * @param \DateTime|null $endCustomerContactDate
      *
      * @return Order
      */
-    public function setEndCustomerContactDate(\DateTime $endCustomerContactDate)
+    public function setEndCustomerContactDate(\DateTime $endCustomerContactDate = null)
     {
         $this->endCustomerContactDate = $endCustomerContactDate;
 
@@ -268,7 +268,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getReviewLink()
     {
@@ -276,7 +276,7 @@ class Order
     }
 
     /**
-     * @param string $reviewLink
+     * @param string|null $reviewLink
      *
      * @return Order
      */

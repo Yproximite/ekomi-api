@@ -75,7 +75,7 @@ class GetOrdersRequest extends AbstractRequest implements RequestInterface
      */
     public function getResponseNormalizer()
     {
-        return new CollectionNormalizer(new OrderCollection(), new OrderNormalizer());
+        return new CollectionNormalizer(OrderCollection::class, new OrderNormalizer());
     }
 
     /**

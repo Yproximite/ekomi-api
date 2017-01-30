@@ -47,12 +47,13 @@ class OrderNormalizer implements NormalizerInterface
         ;
 
         $comment = array_key_exists('comment', $data['feedback']) ? $data['feedback']['comment'] : null;
+        $review  = str_replace("\\n", "\n", $data['feedback']['review']);
 
         $feedback = new Feedback();
         $feedback
             ->setEndCustomerSubmitDate(new \DateTime($data['feedback']['end_customer_submit_date']))
             ->setRating($data['feedback']['rating'])
-            ->setReview($data['feedback']['review'])
+            ->setReview($review)
             ->setComment($comment)
         ;
 

@@ -1,0 +1,4 @@
+suites:
+    default:
+        psr4_prefix: Yproximite\Ekomi\Api
+        namespace: Yproximite\Ekomi\Api

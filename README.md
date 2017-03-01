@@ -9,8 +9,9 @@ Usage
 -----
 
 ```php
-use Yproximite\Ekomi\Api\Client;
-use Yproximite\Ekomi\Api\Model\OrderCollection;
+use Yproximite\Ekomi\Api\Client\Client;
+use Yproximite\Ekomi\Api\Service\ServiceAggregator;
+use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
 
 $client = new Client(
     HttpClient $httpClient,
@@ -33,6 +34,6 @@ $message->setCreatedTill(new \DateTime('2016-11-06 00:14:29'));
 $message->setShopId(11);
 $message->setCustomDataFilter(['vendor_id' => 123]);
 
-// Yproximite\Ekomi\Api\Model\Order[]
+// Yproximite\Ekomi\Api\Model\Order\Order[]
 $response = $api->order()->getOrders($message);
 ```

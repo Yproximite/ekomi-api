@@ -34,7 +34,7 @@ class OrderListMessageSpec extends ObjectBehavior
             'createdFrom'      => '2016-11-05T00:14:29+0000',
             'createdTill'      => '2016-11-06T00:14:29+0000',
             'shopId'           => 11,
-            'customDataFilter' => ['vendor_id' => 123],
+            'customDataFilter' => json_encode(['vendor_id' => 123]),
         ];
 
         $this->build()->shouldReturn($data);

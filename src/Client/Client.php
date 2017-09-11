@@ -5,6 +5,7 @@ namespace Yproximite\Ekomi\Api\Client;
 
 use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Http\Client\Exception\HttpException;
@@ -15,6 +16,7 @@ use Yproximite\Ekomi\Api\Exception\RequestException;
 use Yproximite\Ekomi\Api\Exception\TransferException;
 use Yproximite\Ekomi\Api\Exception\AuthenficationException;
 use Yproximite\Ekomi\Api\Exception\InvalidResponseException;
+use Yproximite\Ekomi\Api\Proxy\CacheProxy;
 
 /**
  * Class Client
@@ -49,16 +51,14 @@ class Client
     private $messageFactory;
 
     /**
-     * @var string
+     * @var CacheProxy
      */
-    private $apiToken;
+    private $cacheProxy;
 
     /**
-     * Used to determine if token was used. In some cases the token could be invalidated during the usage of the API.
-     *
-     * @var bool
+     * @var string
      */
-    private $apiTokenFresh = true;
+    private $cacheKey;
 
     /**
      * Client constructor.
@@ -74,13 +74,17 @@ class Client
         string $clientId,
         string $secretKey,
         string $baseUrl = self::BASE_URL,
-        MessageFactory $messageFactory = null
+        MessageFactory $messageFactory = null,
+        CacheItemPoolInterface $cache = null,
+        string $cacheKey = null
     ) {
         $this->httpClient     = $httpClient;
         $this->messageFactory = $messageFactory;
         $this->clientId       = $clientId;
         $this->secretKey      = $secretKey;
         $this->baseUrl        = $baseUrl;
+        $this->cacheProxy     = new CacheProxy($cache);
+        $this->cacheKey       = $cacheKey;
     }
 
     /**
@@ -103,7 +107,7 @@ class Client
         try {
             $content = $this->doSendRequest($request);
         } catch (InvalidResponseException $e) {
-            if ($e->getResponse()->getStatusCode() === 401 && !$this->apiTokenFresh) {
+            if ($e->getResponse()->getStatusCode() === 401 && $this->cacheProxy->hasItem($this->cacheKey)) {
                 $this->resetApiToken();
 
                 $request = $this->createRequest($method, $path, $body, $headers);
@@ -225,16 +229,21 @@ class Client
      */
     private function getApiToken(): string
     {
-        if (!is_null($this->apiToken)) {
-            $this->apiTokenFresh = false;
-        } else {
-            $this->updateApiToken();
+        $apiTokenItem = $this->cacheProxy->getItem($this->cacheKey);
+
+        if ($apiToken = $apiTokenItem->get()) {
+            return $apiToken;
         }
 
-        return $this->apiToken;
+        $apiToken = $this->updateApiToken();
+        $apiTokenItem->set($apiToken);
+
+        $this->cacheProxy->save($apiTokenItem);
+
+        return $apiToken;
     }
 
-    private function updateApiToken()
+    private function updateApiToken(): string
     {
         $params  = ['username' => $this->clientId, 'password' => $this->secretKey];
         $request = $this->createRequest('POST', 'security/login', $params, [], false);
@@ -249,13 +258,12 @@ class Client
             throw new AuthenficationException('Could not retreive a token.');
         }
 
-        $this->apiToken = (string) $data['access_token'];
+        return (string) $data['access_token'];
     }
 
     private function resetApiToken()
     {
-        $this->apiToken      = null;
-        $this->apiTokenFresh = true;
+        $this->cacheProxy->deleteItem($this->cacheKey);
     }
 
     /**

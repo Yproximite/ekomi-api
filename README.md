@@ -18,7 +18,9 @@ $client = new Client(
     string $clientId = '999999',
     string $secretKey = 'xxxxxxxxxxxxxx',
     string $baseUrl = Client::BASE_URL,
-    MessageFactory $messageFactory = null
+    MessageFactory $messageFactory = null,
+    CacheItemPoolInterface $cache = null
+    string $cacheKey = null
 );
 
 $api = new ServiceAggregator($client);
@@ -36,4 +38,11 @@ $message->setCustomDataFilter(['vendor_id' => 123]);
 
 // Yproximite\Ekomi\Api\Model\Order\Order[]
 $response = $api->order()->getOrders($message);
+```
+
+Test
+-----
+
+```bash
+./bin/phpspec run
 ```

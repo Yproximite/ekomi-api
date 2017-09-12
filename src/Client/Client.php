@@ -78,6 +78,10 @@ class Client
         CacheItemPoolInterface $cache = null,
         string $cacheKey = null
     ) {
+        if ($cache && !$cacheKey) {
+            throw new InvalidArgumentException('cacheKey must be set if you use cache system');
+        }
+
         $this->httpClient     = $httpClient;
         $this->messageFactory = $messageFactory;
         $this->clientId       = $clientId;

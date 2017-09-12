@@ -76,12 +76,8 @@ class Client
         string $baseUrl = self::BASE_URL,
         MessageFactory $messageFactory = null,
         CacheItemPoolInterface $cache = null,
-        string $cacheKey = null
+        string $cacheKey = 'yproximite.ekomi.cache_key'
     ) {
-        if ($cache && !$cacheKey) {
-            throw new InvalidArgumentException('cacheKey must be set if you use cache system');
-        }
-
         $this->httpClient     = $httpClient;
         $this->messageFactory = $messageFactory;
         $this->clientId       = $clientId;

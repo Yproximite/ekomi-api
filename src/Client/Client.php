@@ -102,12 +102,13 @@ class Client
      */
     public function sendRequest(string $method, string $path, $body = null, array $headers = [])
     {
-        $request = $this->createRequest($method, $path, $body, $headers);
-
         try {
+            $request = $this->createRequest($method, $path, $body, $headers);
             $content = $this->doSendRequest($request);
         } catch (InvalidResponseException $e) {
-            if ($e->getResponse()->getStatusCode() === 401 && $this->cacheProxy->hasItem($this->cacheKey)) {
+            if (($e->getResponse()->getStatusCode() === 401 || $e->getResponse()->getStatusCode() === 403)
+                && $this->cacheProxy->hasItem($this->cacheKey)
+            ) {
                 $this->resetApiToken();
 
                 $request = $this->createRequest($method, $path, $body, $headers);

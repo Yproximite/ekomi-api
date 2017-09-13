@@ -25,6 +25,8 @@ class Client
 {
     const BASE_URL = 'https://csv.ekomi.com/api/3.0';
 
+    const CACHE_KEY = 'yproximite.ekomi.cache_key';
+
     /**
      * @var string
      */
@@ -76,7 +78,7 @@ class Client
         string $baseUrl = self::BASE_URL,
         MessageFactory $messageFactory = null,
         CacheItemPoolInterface $cache = null,
-        string $cacheKey = 'yproximite.ekomi.cache_key'
+        string $cacheKey = self::CACHE_KEY
     ) {
         $this->httpClient     = $httpClient;
         $this->messageFactory = $messageFactory;

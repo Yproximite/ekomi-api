@@ -70,7 +70,7 @@ class Feedback implements ModelInterface
     /**
      * @return string
      */
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }

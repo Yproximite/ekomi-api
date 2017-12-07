@@ -23,7 +23,7 @@ use Yproximite\Ekomi\Api\Proxy\CacheProxy;
  */
 class Client
 {
-    const BASE_URL = 'https://csv.ekomi.com/api/3.0';
+    const BASE_URL = 'https://csv.ekomiapps.de/api/3.0';
 
     const CACHE_KEY = 'yproximite.ekomi.cache_key';
 

@@ -39,12 +39,13 @@ class OrderServiceSpec extends ObjectBehavior
             'customDataFilter' => json_encode(['vendor_id' => 123]),
         ];
 
+        $message->getOffset()->willReturn(5);
         $message->build()->willReturn($query);
 
         $method = 'GET';
         $path   = 'orders';
 
-        $client->sendRequest($method, $path, $query)->willReturn(['data' => []]);
+        $client->sendRequest($method, $path, $query)->willReturn(['data' => [], 'limit' => 15, 'total' => 0]);
         $client->sendRequest($method, $path, $query)->shouldBeCalled();
 
         $factory->createMany(Order::class, [])->willReturn([]);

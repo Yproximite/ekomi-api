@@ -30,7 +30,7 @@ class OrderService extends AbstractService implements ServiceInterface
         }
 
         /** @var Order[] $models */
-        $models = $this->getModelFactory()->createMany(Order::class, $response['data']);
+        $models = $this->getModelFactory()->createMany(Order::class, $data);
 
         return $models;
     }

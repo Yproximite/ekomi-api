@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Exception;
@@ -16,12 +17,6 @@ class InvalidResponseException extends RequestException
      */
     private $response;
 
-    /**
-     * @param string            $message
-     * @param RequestInterface  $request
-     * @param ResponseInterface $response
-     * @param \Exception|null   $previous
-     */
     public function __construct(
         string $message,
         RequestInterface $request,
@@ -33,9 +28,6 @@ class InvalidResponseException extends RequestException
         $this->response = $response;
     }
 
-    /**
-     * @return ResponseInterface
-     */
     public function getResponse(): ResponseInterface
     {
         return $this->response;

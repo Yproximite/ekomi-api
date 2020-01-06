@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Yproximite\Ekomi\Api\Model\Order;
 
 use PhpSpec\ObjectBehavior;
-
 use Yproximite\Ekomi\Api\Model\Order\OrderCustomData;
 
 class OrderCustomDataSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $data = [
             'client_id'        => '5',
@@ -21,12 +22,12 @@ class OrderCustomDataSpec extends ObjectBehavior
         $this->beConstructedWith($data);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(OrderCustomData::class);
     }
 
-    function it_should_be_hydrated()
+    public function it_should_be_hydrated()
     {
         $this->getClientId()->shouldReturn('5');
         $this->getTransactionDate()->shouldBeLike(new \DateTime('2016-12-28 18:57:01'));

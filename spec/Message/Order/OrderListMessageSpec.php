@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Yproximite\Ekomi\Api\Message\Order;
 
 use PhpSpec\ObjectBehavior;
-
 use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
 
 class OrderListMessageSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(OrderListMessage::class);
     }
 
-    function it_should_build()
+    public function it_should_build()
     {
         $this->setOffset(5);
         $this->setLimit(15);

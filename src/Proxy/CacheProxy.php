@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Proxy;
@@ -27,14 +28,14 @@ class CacheProxy implements CacheItemPoolInterface
      * a cache miss. It MUST NOT return null.
      *
      * @param string $key
-     *   The key for which to return the corresponding Cache Item.
+     *                    The key for which to return the corresponding Cache Item
      *
-     * @throws InvalidArgumentException
-     *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     * @throws invalidArgumentException
+     *                                  If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
+     *                                  MUST be thrown
      *
-     * @return CacheItemInterface
-     *   The corresponding Cache Item.
+     * @return cacheItemInterface
+     *                            The corresponding Cache Item
      */
     public function getItem($key)
     {
@@ -45,19 +46,19 @@ class CacheProxy implements CacheItemPoolInterface
      * Returns a traversable set of cache items.
      *
      * @param string[] $keys
-     *   An indexed array of keys of items to retrieve.
+     *                       An indexed array of keys of items to retrieve
      *
-     * @throws InvalidArgumentException
-     *   If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     * @throws invalidArgumentException
+     *                                  If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
+     *                                  MUST be thrown
      *
      * @return array|\Traversable
-     *   A traversable collection of Cache Items keyed by the cache keys of
-     *   each item. A Cache item will be returned for each key, even if that
-     *   key is not found. However, if no keys are specified then an empty
-     *   traversable MUST be returned instead.
+     *                            A traversable collection of Cache Items keyed by the cache keys of
+     *                            each item. A Cache item will be returned for each key, even if that
+     *                            key is not found. However, if no keys are specified then an empty
+     *                            traversable MUST be returned instead.
      */
-    public function getItems(array $keys = array())
+    public function getItems(array $keys = [])
     {
         return $this->cache->getItems($keys);
     }
@@ -70,14 +71,14 @@ class CacheProxy implements CacheItemPoolInterface
      * such situation use CacheItemInterface::isHit() instead.
      *
      * @param string $key
-     *   The key for which to check existence.
+     *                    The key for which to check existence
      *
-     * @throws InvalidArgumentException
-     *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     * @throws invalidArgumentException
+     *                                  If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
+     *                                  MUST be thrown
      *
      * @return bool
-     *   True if item exists in the cache, false otherwise.
+     *              True if item exists in the cache, false otherwise
      */
     public function hasItem($key)
     {
@@ -88,7 +89,7 @@ class CacheProxy implements CacheItemPoolInterface
      * Deletes all items in the pool.
      *
      * @return bool
-     *   True if the pool was successfully cleared. False if there was an error.
+     *              True if the pool was successfully cleared. False if there was an error.
      */
     public function clear()
     {
@@ -99,14 +100,14 @@ class CacheProxy implements CacheItemPoolInterface
      * Removes the item from the pool.
      *
      * @param string $key
-     *   The key to delete.
+     *                    The key to delete
      *
-     * @throws InvalidArgumentException
-     *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     * @throws invalidArgumentException
+     *                                  If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
+     *                                  MUST be thrown
      *
      * @return bool
-     *   True if the item was successfully removed. False if there was an error.
+     *              True if the item was successfully removed. False if there was an error.
      */
     public function deleteItem($key)
     {
@@ -117,13 +118,14 @@ class CacheProxy implements CacheItemPoolInterface
      * Removes multiple items from the pool.
      *
      * @param string[] $keys
-     *   An array of keys that should be removed from the pool.
-     * @throws InvalidArgumentException
-     *   If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     *                       An array of keys that should be removed from the pool
+     *
+     * @throws invalidArgumentException
+     *                                  If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
+     *                                  MUST be thrown
      *
      * @return bool
-     *   True if the items were successfully removed. False if there was an error.
+     *              True if the items were successfully removed. False if there was an error.
      */
     public function deleteItems(array $keys)
     {
@@ -133,11 +135,11 @@ class CacheProxy implements CacheItemPoolInterface
     /**
      * Persists a cache item immediately.
      *
-     * @param CacheItemInterface $item
-     *   The cache item to save.
+     * @param cacheItemInterface $item
+     *                                 The cache item to save
      *
      * @return bool
-     *   True if the item was successfully persisted. False if there was an error.
+     *              True if the item was successfully persisted. False if there was an error.
      */
     public function save(CacheItemInterface $item)
     {
@@ -147,11 +149,11 @@ class CacheProxy implements CacheItemPoolInterface
     /**
      * Sets a cache item to be persisted later.
      *
-     * @param CacheItemInterface $item
-     *   The cache item to save.
+     * @param cacheItemInterface $item
+     *                                 The cache item to save
      *
      * @return bool
-     *   False if the item could not be queued or if a commit was attempted and failed. True otherwise.
+     *              False if the item could not be queued or if a commit was attempted and failed. True otherwise.
      */
     public function saveDeferred(CacheItemInterface $item)
     {
@@ -162,7 +164,7 @@ class CacheProxy implements CacheItemPoolInterface
      * Persists any deferred cache items.
      *
      * @return bool
-     *   True if all not-yet-saved items were successfully saved or there were none. False otherwise.
+     *              True if all not-yet-saved items were successfully saved or there were none. False otherwise.
      */
     public function commit()
     {

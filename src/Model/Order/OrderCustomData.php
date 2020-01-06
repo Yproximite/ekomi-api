@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Model\Order;
@@ -37,8 +38,6 @@ class OrderCustomData implements ModelInterface
 
     /**
      * OrderCustomData constructor.
-     *
-     * @param array $data
      */
     public function __construct(array $data)
     {

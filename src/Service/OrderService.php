@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Service;
 
-use Yproximite\Ekomi\Api\Model\Order\Order;
 use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
+use Yproximite\Ekomi\Api\Model\Order\Order;
 
 /**
  * Class OrderService
@@ -12,8 +13,6 @@ use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
 class OrderService extends AbstractService implements ServiceInterface
 {
     /**
-     * @param OrderListMessage $message
-     *
      * @return Order[]
      */
     public function getOrders(OrderListMessage $message): array

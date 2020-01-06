@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Model\Order;
@@ -72,8 +73,6 @@ class Order implements ModelInterface
 
     /**
      * Order constructor.
-     *
-     * @param array $data
      */
     public function __construct(array $data)
     {
@@ -103,57 +102,36 @@ class Order implements ModelInterface
         return $this->created;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getUpdated(): \DateTime
     {
         return $this->updated;
     }
 
-    /**
-     * @return string
-     */
     public function getOrderId(): string
     {
         return $this->orderId;
     }
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return OrderCustomData
-     */
     public function getCustomData(): OrderCustomData
     {
         return $this->customData;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getRegisterDate(): \DateTime
     {
         return $this->registerDate;
@@ -183,9 +161,6 @@ class Order implements ModelInterface
         return $this->reviewLink;
     }
 
-    /**
-     * @return Feedback
-     */
     public function getFeedback(): Feedback
     {
         return $this->feedback;

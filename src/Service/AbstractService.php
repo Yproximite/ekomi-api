@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Service;
@@ -23,9 +24,6 @@ abstract class AbstractService
 
     /**
      * AbstractService constructor.
-     *
-     * @param Client       $client
-     * @param ModelFactory $modelFactory
      */
     public function __construct(Client $client, ModelFactory $modelFactory)
     {
@@ -33,17 +31,11 @@ abstract class AbstractService
         $this->modelFactory = $modelFactory;
     }
 
-    /**
-     * @return Client
-     */
     protected function getClient(): Client
     {
         return $this->client;
     }
 
-    /**
-     * @return ModelFactory
-     */
     protected function getModelFactory(): ModelFactory
     {
         return $this->modelFactory;

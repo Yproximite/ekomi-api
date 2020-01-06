@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Yproximite\Ekomi\Api\Model\Order;
 
 use PhpSpec\ObjectBehavior;
-
 use Yproximite\Ekomi\Api\Model\Order\Order;
 
 class OrderSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $feedback = [
             'end_customer_submit_date' => '2016-12-28T18:57:01+0000',
@@ -43,12 +44,12 @@ class OrderSpec extends ObjectBehavior
         $this->beConstructedWith($data);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Order::class);
     }
 
-    function it_should_be_hydrated()
+    public function it_should_be_hydrated()
     {
         $this->getCreated()->shouldBeLike(new \DateTime('2016-11-28 18:57:01'));
         $this->getUpdated()->shouldBeLike(new \DateTime('2016-11-29 18:57:01'));

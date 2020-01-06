@@ -1,28 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Yproximite\Ekomi\Api\Service;
 
 use PhpSpec\ObjectBehavior;
-
 use Yproximite\Ekomi\Api\Client\Client;
-use Yproximite\Ekomi\Api\Model\Order\Order;
 use Yproximite\Ekomi\Api\Factory\ModelFactory;
-use Yproximite\Ekomi\Api\Service\OrderService;
 use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
+use Yproximite\Ekomi\Api\Model\Order\Order;
+use Yproximite\Ekomi\Api\Service\OrderService;
 
 class OrderServiceSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(OrderService::class);
     }
 
-    function let(Client $client, ModelFactory $factory)
+    public function let(Client $client, ModelFactory $factory)
     {
         $this->beConstructedWith($client, $factory);
     }
 
-    function it_should_get_orders(
+    public function it_should_get_orders(
         Client $client,
         ModelFactory $factory,
         OrderListMessage $message

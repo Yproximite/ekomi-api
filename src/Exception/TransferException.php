@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Exception;
@@ -16,12 +17,6 @@ class TransferException extends RequestException
      */
     private $response;
 
-    /**
-     * @param string                 $message
-     * @param RequestInterface       $request
-     * @param ResponseInterface|null $response
-     * @param \Exception|null        $previous
-     */
     public function __construct(
         string $message,
         RequestInterface $request,

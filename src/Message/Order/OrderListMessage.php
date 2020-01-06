@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Message\Order;
@@ -70,9 +71,6 @@ class OrderListMessage implements MessageInterface
         return $this->offset;
     }
 
-    /**
-     * @param int|null $offset
-     */
     public function setOffset(int $offset = null)
     {
         $this->offset = $offset;
@@ -86,9 +84,6 @@ class OrderListMessage implements MessageInterface
         return $this->limit;
     }
 
-    /**
-     * @param int|null $limit
-     */
     public function setLimit(int $limit = null)
     {
         $this->limit = $limit;
@@ -102,9 +97,6 @@ class OrderListMessage implements MessageInterface
         return $this->orderBy;
     }
 
-    /**
-     * @param string|null $orderBy
-     */
     public function setOrderBy(string $orderBy = null)
     {
         $this->orderBy = $orderBy;
@@ -118,25 +110,19 @@ class OrderListMessage implements MessageInterface
         return $this->orderDirection;
     }
 
-    /**
-     * @param string|null $orderDirection
-     */
     public function setOrderDirection(string $orderDirection = null)
     {
         $this->orderDirection = $orderDirection;
     }
 
     /**
-     * @return boolean|null
+     * @return bool|null
      */
     public function isWithFeedbackOnly()
     {
         return $this->withFeedbackOnly;
     }
 
-    /**
-     * @param boolean|null $withFeedbackOnly
-     */
     public function setWithFeedbackOnly(bool $withFeedbackOnly = null)
     {
         $this->withFeedbackOnly = $withFeedbackOnly;
@@ -150,9 +136,6 @@ class OrderListMessage implements MessageInterface
         return $this->createdFrom;
     }
 
-    /**
-     * @param \DateTime|null $createdFrom
-     */
     public function setCreatedFrom(\DateTime $createdFrom = null)
     {
         $this->createdFrom = $createdFrom;
@@ -166,9 +149,6 @@ class OrderListMessage implements MessageInterface
         return $this->createdTill;
     }
 
-    /**
-     * @param \DateTime|null $createdTill
-     */
     public function setCreatedTill(\DateTime $createdTill = null)
     {
         $this->createdTill = $createdTill;
@@ -182,9 +162,6 @@ class OrderListMessage implements MessageInterface
         return $this->shopId;
     }
 
-    /**
-     * @param int|null $shopId
-     */
     public function setShopId(int $shopId = null)
     {
         $this->shopId = $shopId;
@@ -198,9 +175,6 @@ class OrderListMessage implements MessageInterface
         return $this->customDataFilter;
     }
 
-    /**
-     * @param array|null $customDataFilter
-     */
     public function setCustomDataFilter(array $customDataFilter = null)
     {
         $this->customDataFilter = $customDataFilter;

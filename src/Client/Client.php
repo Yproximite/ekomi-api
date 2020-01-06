@@ -1,21 +1,21 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Client;
 
+use Http\Client\Exception\HttpException;
+use Http\Client\Exception\TransferException as HttpTransferException;
 use Http\Client\HttpClient;
+use Http\Discovery\MessageFactoryDiscovery;
 use Http\Message\MessageFactory;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Http\Client\Exception\HttpException;
-use Http\Discovery\MessageFactoryDiscovery;
-use Http\Client\Exception\TransferException as HttpTransferException;
-
-use Yproximite\Ekomi\Api\Exception\RequestException;
-use Yproximite\Ekomi\Api\Exception\TransferException;
 use Yproximite\Ekomi\Api\Exception\AuthenficationException;
 use Yproximite\Ekomi\Api\Exception\InvalidResponseException;
+use Yproximite\Ekomi\Api\Exception\RequestException;
+use Yproximite\Ekomi\Api\Exception\TransferException;
 use Yproximite\Ekomi\Api\Proxy\CacheProxy;
 
 /**
@@ -64,12 +64,6 @@ class Client
 
     /**
      * Client constructor.
-     *
-     * @param HttpClient          $httpClient
-     * @param string              $clientId
-     * @param string              $secretKey
-     * @param string              $baseUrl
-     * @param MessageFactory|null $messageFactory
      */
     public function __construct(
         HttpClient $httpClient,
@@ -92,12 +86,10 @@ class Client
     /**
      * Sends a request
      *
-     * @param string                                     $method
-     * @param string                                     $path
      * @param array|resource|string|StreamInterface|null $body
-     * @param array                                      $headers
      *
      * @return mixed
+     *
      * @throws TransferException
      * @throws InvalidResponseException
      * @throws AuthenficationException
@@ -108,7 +100,7 @@ class Client
             $request = $this->createRequest($method, $path, $body, $headers);
             $content = $this->doSendRequest($request);
         } catch (InvalidResponseException $e) {
-            if (($e->getResponse()->getStatusCode() === 401 || $e->getResponse()->getStatusCode() === 403)
+            if ((401 === $e->getResponse()->getStatusCode() || 403 === $e->getResponse()->getStatusCode())
                 && $this->cacheProxy->hasItem($this->cacheKey)
             ) {
                 $this->resetApiToken();
@@ -124,13 +116,7 @@ class Client
     }
 
     /**
-     * @param string $method
-     * @param string $path
-     * @param null   $body
-     * @param array  $headers
-     * @param bool   $withAuthorization
-     *
-     * @return RequestInterface
+     * @param null $body
      */
     private function createRequest(
         string $method,
@@ -145,7 +131,7 @@ class Client
         if (in_array($method, $this->getQueryMethods())) {
             $query = is_array($data) ? http_build_query($data) : $data;
 
-            if (is_string($query) && $query !== '') {
+            if (is_string($query) && '' !== $query) {
                 $uri .= '?'.$query;
             }
         } else {
@@ -162,8 +148,6 @@ class Client
     }
 
     /**
-     * @param RequestInterface $request
-     *
      * @return mixed
      */
     private function doSendRequest(RequestInterface $request)
@@ -171,11 +155,7 @@ class Client
         try {
             $response = $this->getHttpClient()->sendRequest($request);
         } catch (HttpTransferException $e) {
-            throw new TransferException(
-                $e->getMessage(),
-                $request,
-                $e instanceof HttpException ? $e->getResponse() : null
-            );
+            throw new TransferException($e->getMessage(), $request, $e instanceof HttpException ? $e->getResponse() : null);
         }
 
         if ($response->getStatusCode() >= 400) {
@@ -190,27 +170,21 @@ class Client
 
         $data = json_decode($rawData, true);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             throw new InvalidResponseException('Could not decode the response.', $request, $response);
         }
 
         return $data;
     }
 
-    /**
-     * @return HttpClient
-     */
     private function getHttpClient(): HttpClient
     {
         return $this->httpClient;
     }
 
-    /**
-     * @return MessageFactory
-     */
     private function getMessageFactory(): MessageFactory
     {
-        if ($this->messageFactory === null) {
+        if (null === $this->messageFactory) {
             $this->messageFactory = MessageFactoryDiscovery::find();
         }
 
@@ -219,17 +193,12 @@ class Client
 
     /**
      * Returns all methods that uses query string to transfer a request data
-     *
-     * @return array
      */
     private function getQueryMethods(): array
     {
         return ['GET', 'HEAD', 'DELETE'];
     }
 
-    /**
-     * @return string
-     */
     private function getApiToken(): string
     {
         $apiTokenItem = $this->cacheProxy->getItem($this->cacheKey);
@@ -269,9 +238,6 @@ class Client
         $this->cacheProxy->deleteItem($this->cacheKey);
     }
 
-    /**
-     * @return string
-     */
     private function getAuthorizationHeader(): string
     {
         return sprintf('ekomi %s', $this->getApiToken());

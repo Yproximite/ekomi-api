@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Yproximite\Ekomi\Api\Service;
@@ -28,8 +29,6 @@ class ServiceAggregator
 
     /**
      * ServiceAggregator constructor.
-     *
-     * @param Client $client
      */
     public function __construct(Client $client)
     {
@@ -37,9 +36,6 @@ class ServiceAggregator
         $this->modelFactory = new ModelFactory();
     }
 
-    /**
-     * @return OrderService
-     */
     public function order(): OrderService
     {
         /** @var OrderService $service */
@@ -48,11 +44,6 @@ class ServiceAggregator
         return $service;
     }
 
-    /**
-     * @param string $class
-     *
-     * @return ServiceInterface
-     */
     private function getService(string $class): ServiceInterface
     {
         if (!array_key_exists($class, $this->services)) {

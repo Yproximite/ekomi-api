@@ -1,5 +1,7 @@
 ekomi-api
 =========
+![CI (master)](https://github.com/Yproximite/ZohoSubscription/workflows/CI/badge.svg)
+![](https://img.shields.io/badge/php-%5E7.4%20%7C%7C%20%5E8.0-blue)
 
 PHP Library to get v3 API
 

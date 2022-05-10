@@ -7,16 +7,8 @@ namespace Yproximite\Ekomi\Api\Service;
 use Yproximite\Ekomi\Api\Client\Client;
 use Yproximite\Ekomi\Api\Factory\ModelFactory;
 
-/**
- * Class ServiceAggregator
- */
 class ServiceAggregator
 {
-    /**
-     * @var Client
-     */
-    private $client;
-
     /**
      * @var ModelFactory
      */
@@ -30,9 +22,8 @@ class ServiceAggregator
     /**
      * ServiceAggregator constructor.
      */
-    public function __construct(Client $client)
+    public function __construct(private Client $client)
     {
-        $this->client       = $client;
         $this->modelFactory = new ModelFactory();
     }
 
@@ -46,7 +37,7 @@ class ServiceAggregator
 
     private function getService(string $class): ServiceInterface
     {
-        if (!array_key_exists($class, $this->services)) {
+        if (!\array_key_exists($class, $this->services)) {
             $this->services[$class] = new $class($this->client, $this->modelFactory);
         }
 

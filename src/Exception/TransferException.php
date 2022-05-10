@@ -7,25 +7,15 @@ namespace Yproximite\Ekomi\Api\Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class TransferException
- */
 class TransferException extends RequestException
 {
-    /**
-     * @var ResponseInterface|null
-     */
-    private $response;
-
     public function __construct(
         string $message,
         RequestInterface $request,
-        ResponseInterface $response = null,
+        private ?ResponseInterface $response = null,
         \Exception $previous = null
     ) {
         parent::__construct($message, $request, $previous);
-
-        $this->response = $response;
     }
 
     /**

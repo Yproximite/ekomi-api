@@ -6,17 +6,14 @@ namespace Yproximite\Ekomi\Api\Message\Order;
 
 use Yproximite\Ekomi\Api\Message\MessageInterface;
 
-/**
- * Class OrderListMessage
- */
 class OrderListMessage implements MessageInterface
 {
-    const ORDER_BY_ORDER_ID = 'order_id';
-    const ORDER_BY_CREATED  = 'created';
-    const ORDER_BY_UPDATED  = 'updated';
+    public const ORDER_BY_ORDER_ID = 'order_id';
+    public const ORDER_BY_CREATED  = 'created';
+    public const ORDER_BY_UPDATED  = 'updated';
 
-    const ORDER_DIRECTION_ASC  = 'ASC';
-    const ORDER_DIRECTION_DESC = 'DESC';
+    public const ORDER_DIRECTION_ASC  = 'ASC';
+    public const ORDER_DIRECTION_DESC = 'DESC';
 
     /**
      * @var int|null
@@ -191,8 +188,8 @@ class OrderListMessage implements MessageInterface
             'orderBy'          => $this->getOrderBy(),
             'orderDirection'   => $this->getOrderDirection(),
             'withFeedbackOnly' => $this->isWithFeedbackOnly(),
-            'createdFrom'      => $this->getCreatedFrom() ? $this->getCreatedFrom()->format(\DateTime::ISO8601) : null,
-            'createdTill'      => $this->getCreatedTill() ? $this->getCreatedTill()->format(\DateTime::ISO8601) : null,
+            'createdFrom'      => $this->getCreatedFrom() ? $this->getCreatedFrom()->format(\DateTime::ATOM) : null,
+            'createdTill'      => $this->getCreatedTill() ? $this->getCreatedTill()->format(\DateTime::ATOM) : null,
             'shopId'           => $this->getShopId(),
             'customDataFilter' => $this->getCustomDataFilter() ? json_encode($this->getCustomDataFilter()) : null,
         ];

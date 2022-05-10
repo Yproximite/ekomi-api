@@ -6,9 +6,6 @@ namespace Yproximite\Ekomi\Api\Factory;
 
 use Yproximite\Ekomi\Api\Model\ModelInterface;
 
-/**
- * Class ModelFactory
- */
 class ModelFactory
 {
     public function create(string $class, array $data): ModelInterface

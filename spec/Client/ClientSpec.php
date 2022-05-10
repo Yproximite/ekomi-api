@@ -148,7 +148,7 @@ class ClientSpec extends ObjectBehavior
 
         $cacheItem->beADoubleOf(CacheItemInterface::class);
         $cacheItem->get()->willReturn(null);
-        $cacheItem->set('efgh')->willReturn(null);
+        $cacheItem->set('efgh')->willReturn($cacheItem);
         $cache->getItem($cacheKey)->willReturn($cacheItem);
         $cache->save($cacheItem)->willReturn(true);
 
@@ -262,7 +262,7 @@ class ClientSpec extends ObjectBehavior
         $stream->__toString()->willReturn($rawResponse);
         $cacheItem->get()->willReturn(null);
         $cache->getItem($cacheKey)->willReturn($cacheItem);
-        $cacheItem->set('efgh')->willReturn(null);
+        $cacheItem->set('efgh')->willReturn($cacheItem);
         $cache->save($cacheItem)->willReturn(true);
         $cache->hasItem($cacheKey)->willReturn(false);
 
@@ -291,7 +291,7 @@ class ClientSpec extends ObjectBehavior
         $httpClient->sendRequest($request)->willThrow($httpException);
         $cacheItem->get()->willReturn(null);
         $cache->getItem($cacheKey)->willReturn($cacheItem);
-        $cacheItem->set('efgh')->willReturn(null);
+        $cacheItem->set('efgh')->willReturn($cacheItem);
         $cache->save($cacheItem)->willReturn(true);
 
         $this->shouldThrow(TransferException::class)->during('sendRequest', ['GET', 'example']);
@@ -314,7 +314,7 @@ class ClientSpec extends ObjectBehavior
         $response->getStatusCode()->willReturn(400);
         $cacheItem->get()->willReturn(null);
         $cache->getItem($cacheKey)->willReturn($cacheItem);
-        $cacheItem->set('efgh')->willReturn(null);
+        $cacheItem->set('efgh')->willReturn($cacheItem);
         $cache->save($cacheItem)->willReturn(true);
 
         $this->shouldThrow(InvalidResponseException::class)->during('sendRequest', ['GET', 'example']);
@@ -335,7 +335,7 @@ class ClientSpec extends ObjectBehavior
 
         $cacheItem->get()->willReturn(null);
         $cache->getItem($cacheKey)->willReturn($cacheItem);
-        $cacheItem->set('efgh')->willReturn(null);
+        $cacheItem->set('efgh')->willReturn($cacheItem);
         $cache->save($cacheItem)->willReturn(true);
 
         $messageFactory->createRequest('GET', $requestUri, $headers, null)->willReturn($request);

@@ -18,39 +18,11 @@ use Yproximite\Ekomi\Api\Exception\RequestException;
 use Yproximite\Ekomi\Api\Exception\TransferException;
 use Yproximite\Ekomi\Api\Proxy\CacheProxy;
 
-/**
- * Class Client
- */
 class Client
 {
-    const BASE_URL = 'https://csv.ekomiapps.de/api/3.0';
+    public const BASE_URL = 'https://csv.ekomiapps.de/api/3.0';
 
-    const CACHE_KEY = 'yproximite.ekomi.cache_key';
-
-    /**
-     * @var string
-     */
-    private $baseUrl;
-
-    /**
-     * @var string
-     */
-    private $clientId;
-
-    /**
-     * @var string
-     */
-    private $secretKey;
-
-    /**
-     * @var HttpClient
-     */
-    private $httpClient;
-
-    /**
-     * @var MessageFactory|null
-     */
-    private $messageFactory;
+    public const CACHE_KEY = 'yproximite.ekomi.cache_key';
 
     /**
      * @var CacheProxy
@@ -58,37 +30,24 @@ class Client
     private $cacheProxy;
 
     /**
-     * @var string
-     */
-    private $cacheKey;
-
-    /**
      * Client constructor.
      */
     public function __construct(
-        HttpClient $httpClient,
-        string $clientId,
-        string $secretKey,
-        string $baseUrl = self::BASE_URL,
-        MessageFactory $messageFactory = null,
+        private HttpClient $httpClient,
+        private string $clientId,
+        private string $secretKey,
+        private string $baseUrl = self::BASE_URL,
+        private ?MessageFactory $messageFactory = null,
         CacheItemPoolInterface $cache = null,
-        string $cacheKey = self::CACHE_KEY
+        private string $cacheKey = self::CACHE_KEY
     ) {
-        $this->httpClient     = $httpClient;
-        $this->messageFactory = $messageFactory;
-        $this->clientId       = $clientId;
-        $this->secretKey      = $secretKey;
-        $this->baseUrl        = $baseUrl;
         $this->cacheProxy     = new CacheProxy($cache);
-        $this->cacheKey       = $cacheKey;
     }
 
     /**
      * Sends a request
      *
      * @param array|resource|string|StreamInterface|null $body
-     *
-     * @return mixed
      *
      * @throws TransferException
      * @throws InvalidResponseException
@@ -115,9 +74,6 @@ class Client
         return $content;
     }
 
-    /**
-     * @param null $body
-     */
     private function createRequest(
         string $method,
         string $path,
@@ -128,14 +84,14 @@ class Client
         $uri  = $this->baseUrl.'/'.$path;
         $body = null;
 
-        if (in_array($method, $this->getQueryMethods())) {
-            $query = is_array($data) ? http_build_query($data) : $data;
+        if (\in_array($method, $this->getQueryMethods())) {
+            $query = \is_array($data) ? http_build_query($data) : $data;
 
-            if (is_string($query) && '' !== $query) {
+            if (\is_string($query) && '' !== $query) {
                 $uri .= '?'.$query;
             }
         } else {
-            $body = is_array($data) ? json_encode($data) : $data;
+            $body = \is_array($data) ? json_encode($data) : $data;
         }
 
         $baseHeaders = ['Content-Type' => 'application/json'];
@@ -147,9 +103,6 @@ class Client
         return $this->getMessageFactory()->createRequest($method, $uri, $headers + $baseHeaders, $body);
     }
 
-    /**
-     * @return mixed
-     */
     private function doSendRequest(RequestInterface $request)
     {
         try {
@@ -222,11 +175,11 @@ class Client
 
         try {
             $data = $this->doSendRequest($request);
-        } catch (RequestException $e) {
+        } catch (RequestException) {
             throw new AuthenficationException('Could not request a token.');
         }
 
-        if (!is_array($data) || !array_key_exists('access_token', $data)) {
+        if (!\is_array($data) || !\array_key_exists('access_token', $data)) {
             throw new AuthenficationException('Could not retreive a token.');
         }
 

@@ -9,32 +9,30 @@
       "email": "mail.sviridenko@gmail.com"
     }
   ],
-  "config": {
-    "bin-dir": "bin",
-    "sort-packages": true
-  },
   "scripts": {
     "php-cs-fixer": "php-cs-fixer fix -v",
     "php-cs-fixer@ci": "php-cs-fixer fix -v --diff --dry-run",
     "phpspec": "phpspec run -n"
   },
   "require": {
-    "php": "^7.4||^8.0",
+    "php": "^8.0",
     "php-http/message-factory": "^1.0.2",
     "php-http/httplug": "^1.0||^2.0",
     "php-http/discovery": "^1.0",
-    "psr/cache": "^1.0",
-    "symfony/cache": "^4.4||^5.3"
+    "psr/cache": "^2.0 || ^3.0",
+    "symfony/cache": "^5.4 || ^6.0"
   },
   "require-dev": {
     "phpspec/phpspec": "^7.0",
     "php-http/message": "^1.0",
     "php-http/guzzle6-adapter": "^1.0||^2.0",
-    "friendsofphp/php-cs-fixer": "^2.16",
-    "symfony/var-dumper": "^4.4||^5.3"
+    "friendsofphp/php-cs-fixer": "^3.8",
+    "symfony/var-dumper": "^5.4 || ^6.0",
+    "rector/rector": "^0.12.23"
   },
   "config": {
-    "bin-dir": "bin"
+    "bin-dir": "bin",
+    "sort-packages": true
   },
   "autoload": {
     "psr-4": {

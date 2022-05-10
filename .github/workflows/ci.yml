@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install PHP
-        uses: shivammathur/setup-php@v2.11.0
+        uses: shivammathur/setup-php@2.11.0
         with:
           php-version: ${{ env.PHP_VERSION_DEFAULT }}
           ini-values: date.timezone=${{ env.TZ }}, memory_limit=-1, session.gc_probability=0, opcache.enable=1, opcache.enable_cli=1, opcache.memory_consumption=256, opcache.max_accelerated_files=20000, opcache.validate_timestamps=0, realpath_cache_size=4096K, realpath_cache_ttl=600

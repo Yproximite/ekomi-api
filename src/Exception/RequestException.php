@@ -6,9 +6,6 @@ namespace Yproximite\Ekomi\Api\Exception;
 
 use Psr\Http\Message\RequestInterface;
 
-/**
- * Class RequestException
- */
 class RequestException extends \RuntimeException implements ExceptionInterface
 {
     /**

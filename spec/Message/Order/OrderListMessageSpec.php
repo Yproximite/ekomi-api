@@ -32,8 +32,8 @@ class OrderListMessageSpec extends ObjectBehavior
             'orderBy'          => 'created',
             'orderDirection'   => 'DESC',
             'withFeedbackOnly' => true,
-            'createdFrom'      => '2016-11-05T00:14:29+0000',
-            'createdTill'      => '2016-11-06T00:14:29+0000',
+            'createdFrom'      => '2016-11-05T00:14:29+00:00',
+            'createdTill'      => '2016-11-06T00:14:29+00:00',
             'shopId'           => 11,
             'customDataFilter' => json_encode(['vendor_id' => 123]),
         ];

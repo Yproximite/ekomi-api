@@ -7,9 +7,6 @@ namespace Yproximite\Ekomi\Api\Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class InvalidResponseException
- */
 class InvalidResponseException extends RequestException
 {
     /**

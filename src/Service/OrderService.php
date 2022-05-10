@@ -7,9 +7,6 @@ namespace Yproximite\Ekomi\Api\Service;
 use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
 use Yproximite\Ekomi\Api\Model\Order\Order;
 
-/**
- * Class OrderService
- */
 class OrderService extends AbstractService implements ServiceInterface
 {
     /**

@@ -18,9 +18,6 @@ use Yproximite\Ekomi\Api\Exception\RequestException;
 use Yproximite\Ekomi\Api\Exception\TransferException;
 use Yproximite\Ekomi\Api\Proxy\CacheProxy;
 
-/**
- * Class Client
- */
 class Client
 {
     const BASE_URL = 'https://csv.ekomiapps.de/api/3.0';

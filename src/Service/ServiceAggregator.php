@@ -7,9 +7,6 @@ namespace Yproximite\Ekomi\Api\Service;
 use Yproximite\Ekomi\Api\Client\Client;
 use Yproximite\Ekomi\Api\Factory\ModelFactory;
 
-/**
- * Class ServiceAggregator
- */
 class ServiceAggregator
 {
     /**

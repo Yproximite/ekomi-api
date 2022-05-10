@@ -6,9 +6,6 @@ namespace Yproximite\Ekomi\Api\Model\Order;
 
 use Yproximite\Ekomi\Api\Model\ModelInterface;
 
-/**
- * Class OrderCustomData
- */
 class OrderCustomData implements ModelInterface
 {
     /**

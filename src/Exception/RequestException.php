@@ -8,19 +8,12 @@ use Psr\Http\Message\RequestInterface;
 
 class RequestException extends \RuntimeException implements ExceptionInterface
 {
-    /**
-     * @var RequestInterface
-     */
-    private $request;
-
     public function __construct(
         string $message,
-        RequestInterface $request,
+        private RequestInterface $request,
         \Exception $previous = null
     ) {
         parent::__construct($message, 0, $previous);
-
-        $this->request = $request;
     }
 
     public function getRequest(): RequestInterface

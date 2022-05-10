@@ -25,59 +25,23 @@ class Client
     public const CACHE_KEY = 'yproximite.ekomi.cache_key';
 
     /**
-     * @var string
-     */
-    private $baseUrl;
-
-    /**
-     * @var string
-     */
-    private $clientId;
-
-    /**
-     * @var string
-     */
-    private $secretKey;
-
-    /**
-     * @var HttpClient
-     */
-    private $httpClient;
-
-    /**
-     * @var MessageFactory|null
-     */
-    private $messageFactory;
-
-    /**
      * @var CacheProxy
      */
     private $cacheProxy;
 
     /**
-     * @var string
-     */
-    private $cacheKey;
-
-    /**
      * Client constructor.
      */
     public function __construct(
-        HttpClient $httpClient,
-        string $clientId,
-        string $secretKey,
-        string $baseUrl = self::BASE_URL,
-        MessageFactory $messageFactory = null,
+        private HttpClient $httpClient,
+        private string $clientId,
+        private string $secretKey,
+        private string $baseUrl = self::BASE_URL,
+        private ?MessageFactory $messageFactory = null,
         CacheItemPoolInterface $cache = null,
-        string $cacheKey = self::CACHE_KEY
+        private string $cacheKey = self::CACHE_KEY
     ) {
-        $this->httpClient     = $httpClient;
-        $this->messageFactory = $messageFactory;
-        $this->clientId       = $clientId;
-        $this->secretKey      = $secretKey;
-        $this->baseUrl        = $baseUrl;
         $this->cacheProxy     = new CacheProxy($cache);
-        $this->cacheKey       = $cacheKey;
     }
 
     /**
@@ -211,7 +175,7 @@ class Client
 
         try {
             $data = $this->doSendRequest($request);
-        } catch (RequestException $e) {
+        } catch (RequestException) {
             throw new AuthenficationException('Could not request a token.');
         }
 

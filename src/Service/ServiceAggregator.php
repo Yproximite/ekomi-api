@@ -10,11 +10,6 @@ use Yproximite\Ekomi\Api\Factory\ModelFactory;
 class ServiceAggregator
 {
     /**
-     * @var Client
-     */
-    private $client;
-
-    /**
      * @var ModelFactory
      */
     private $modelFactory;
@@ -27,9 +22,8 @@ class ServiceAggregator
     /**
      * ServiceAggregator constructor.
      */
-    public function __construct(Client $client)
+    public function __construct(private Client $client)
     {
-        $this->client       = $client;
         $this->modelFactory = new ModelFactory();
     }
 

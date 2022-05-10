@@ -9,20 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 
 class InvalidResponseException extends RequestException
 {
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
-
     public function __construct(
         string $message,
         RequestInterface $request,
-        ResponseInterface $response,
+        private ResponseInterface $response,
         \Exception $previous = null
     ) {
         parent::__construct($message, $request, $previous);
-
-        $this->response = $response;
     }
 
     public function getResponse(): ResponseInterface

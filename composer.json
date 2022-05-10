@@ -31,7 +31,8 @@
     "php-http/message": "^1.0",
     "php-http/guzzle6-adapter": "^1.0||^2.0",
     "friendsofphp/php-cs-fixer": "^3.8",
-    "symfony/var-dumper": "^5.4 || ^6.0"
+    "symfony/var-dumper": "^5.4 || ^6.0",
+    "rector/rector": "^0.12.23"
   },
   "config": {
     "bin-dir": "bin"

@@ -38,16 +38,16 @@ class OrderCustomData implements ModelInterface
      */
     public function __construct(array $data)
     {
-        $this->clientId    = array_key_exists('client_id', $data) ? (string) $data['client_id'] : null;
-        $this->projectType = array_key_exists('project_type', $data) ? (string) $data['project_type'] : null;
-        $this->vendorId    = array_key_exists('vendor_id', $data) ? (string) $data['vendor_id'] : null;
+        $this->clientId    = \array_key_exists('client_id', $data) ? (string) $data['client_id'] : null;
+        $this->projectType = \array_key_exists('project_type', $data) ? (string) $data['project_type'] : null;
+        $this->vendorId    = \array_key_exists('vendor_id', $data) ? (string) $data['vendor_id'] : null;
 
-        $this->transactionDate = array_key_exists('transaction_date', $data)
+        $this->transactionDate = \array_key_exists('transaction_date', $data)
             ? new \DateTime($data['transaction_date'])
             : null
         ;
 
-        $this->projectLocation = array_key_exists('project_location', $data)
+        $this->projectLocation = \array_key_exists('project_location', $data)
             ? (string) $data['project_location']
             : null
         ;

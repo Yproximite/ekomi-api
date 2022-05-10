@@ -82,12 +82,12 @@ class Order implements ModelInterface
         $this->customData   = new OrderCustomData($data['custom_data']);
         $this->registerDate = new \DateTime($data['register_date']);
 
-        $this->endCustomerContactDate = array_key_exists('end_customer_contact_date', $data)
+        $this->endCustomerContactDate = \array_key_exists('end_customer_contact_date', $data)
             ? new \DateTime($data['end_customer_contact_date'])
             : null;
 
         $this->productIds = array_map('strval', $data['product_ids']);
-        $this->reviewLink = array_key_exists('review_link', $data) ? (string) $data['review_link'] : null;
+        $this->reviewLink = \array_key_exists('review_link', $data) ? (string) $data['review_link'] : null;
         $this->feedback   = new Feedback($data['feedback']);
     }
 

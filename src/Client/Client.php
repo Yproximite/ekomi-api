@@ -20,9 +20,9 @@ use Yproximite\Ekomi\Api\Proxy\CacheProxy;
 
 class Client
 {
-    const BASE_URL = 'https://csv.ekomiapps.de/api/3.0';
+    public const BASE_URL = 'https://csv.ekomiapps.de/api/3.0';
 
-    const CACHE_KEY = 'yproximite.ekomi.cache_key';
+    public const CACHE_KEY = 'yproximite.ekomi.cache_key';
 
     /**
      * @var string
@@ -85,8 +85,6 @@ class Client
      *
      * @param array|resource|string|StreamInterface|null $body
      *
-     * @return mixed
-     *
      * @throws TransferException
      * @throws InvalidResponseException
      * @throws AuthenficationException
@@ -112,9 +110,6 @@ class Client
         return $content;
     }
 
-    /**
-     * @param null $body
-     */
     private function createRequest(
         string $method,
         string $path,
@@ -125,14 +120,14 @@ class Client
         $uri  = $this->baseUrl.'/'.$path;
         $body = null;
 
-        if (in_array($method, $this->getQueryMethods())) {
-            $query = is_array($data) ? http_build_query($data) : $data;
+        if (\in_array($method, $this->getQueryMethods())) {
+            $query = \is_array($data) ? http_build_query($data) : $data;
 
-            if (is_string($query) && '' !== $query) {
+            if (\is_string($query) && '' !== $query) {
                 $uri .= '?'.$query;
             }
         } else {
-            $body = is_array($data) ? json_encode($data) : $data;
+            $body = \is_array($data) ? json_encode($data) : $data;
         }
 
         $baseHeaders = ['Content-Type' => 'application/json'];
@@ -144,9 +139,6 @@ class Client
         return $this->getMessageFactory()->createRequest($method, $uri, $headers + $baseHeaders, $body);
     }
 
-    /**
-     * @return mixed
-     */
     private function doSendRequest(RequestInterface $request)
     {
         try {
@@ -223,7 +215,7 @@ class Client
             throw new AuthenficationException('Could not request a token.');
         }
 
-        if (!is_array($data) || !array_key_exists('access_token', $data)) {
+        if (!\is_array($data) || !\array_key_exists('access_token', $data)) {
             throw new AuthenficationException('Could not retreive a token.');
         }
 

@@ -43,7 +43,7 @@ class ServiceAggregator
 
     private function getService(string $class): ServiceInterface
     {
-        if (!array_key_exists($class, $this->services)) {
+        if (!\array_key_exists($class, $this->services)) {
             $this->services[$class] = new $class($this->client, $this->modelFactory);
         }
 

@@ -8,12 +8,12 @@ use Yproximite\Ekomi\Api\Message\MessageInterface;
 
 class OrderListMessage implements MessageInterface
 {
-    const ORDER_BY_ORDER_ID = 'order_id';
-    const ORDER_BY_CREATED  = 'created';
-    const ORDER_BY_UPDATED  = 'updated';
+    public const ORDER_BY_ORDER_ID = 'order_id';
+    public const ORDER_BY_CREATED  = 'created';
+    public const ORDER_BY_UPDATED  = 'updated';
 
-    const ORDER_DIRECTION_ASC  = 'ASC';
-    const ORDER_DIRECTION_DESC = 'DESC';
+    public const ORDER_DIRECTION_ASC  = 'ASC';
+    public const ORDER_DIRECTION_DESC = 'DESC';
 
     /**
      * @var int|null

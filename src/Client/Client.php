@@ -28,11 +28,14 @@ class Client
 
     /**
      * @param array<string, mixed> $body
+     * @param array<string, mixed> $headers
+     *
+     * @return array<string, mixed>
      *
      * @throws InvalidResponseException
      * @throws AuthenficationException
      */
-    public function sendRequest(string $method, string $path, array $body = [], array $headers = [])
+    public function sendRequest(string $method, string $path, array $body = [], array $headers = []): array
     {
         $headers = [
             ...$headers,
@@ -77,7 +80,7 @@ class Client
 
     private function getApiToken(): string
     {
-        return $this->cache->get($this->cacheKey, function (ItemInterface $item) {
+        return $this->cache->get($this->cacheKey, function (ItemInterface $item): string {
             $item->expiresAfter(60 * 60);
 
             return $this->updateApiToken();

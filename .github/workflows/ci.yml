@@ -94,3 +94,7 @@ jobs:
       - name: Run PHPspec
         run: composer phpspec
       # continue-on-error: ${{ matrix.config.ALLOWED_TO_FAIL == true }}
+
+      - name: Run PHPStan
+        run: php bin/phpstan
+      # continue-on-error: ${{ matrix.config.ALLOWED_TO_FAIL == true }}

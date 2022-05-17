@@ -16,11 +16,12 @@
   },
   "require": {
     "php": "^8.0",
-    "php-http/message-factory": "^1.0.2",
-    "php-http/httplug": "^1.0||^2.0",
     "php-http/discovery": "^1.0",
+    "php-http/httplug": "^1.0||^2.0",
+    "php-http/message-factory": "^1.0.2",
     "psr/cache": "^2.0 || ^3.0",
-    "symfony/cache": "^5.4 || ^6.0"
+    "symfony/cache": "^5.4 || ^6.0",
+    "symfony/http-client": "^5.4 || ^6.0"
   },
   "require-dev": {
     "phpspec/phpspec": "^7.0",

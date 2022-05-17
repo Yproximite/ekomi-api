@@ -188,7 +188,7 @@ class OrderListMessage implements MessageInterface
             'createdFrom'      => $this->getCreatedFrom()?->format(\DateTime::ATOM),
             'createdTill'      => $this->getCreatedTill()?->format(\DateTime::ATOM),
             'shopId'           => $this->getShopId(),
-            'customDataFilter' => $this->getCustomDataFilter() ? json_encode($this->getCustomDataFilter()) : null,
+            'customDataFilter' => null !== $this->getCustomDataFilter() ? json_encode($this->getCustomDataFilter()) : null,
         ];
     }
 }

@@ -53,7 +53,11 @@ class Client
                 throw new InvalidResponseException('Bad response status code.', $response);
             }
 
-            $content = $response->toArray();
+            try {
+                $content = $response->toArray();
+            } catch (\JsonException) {
+                throw new InvalidResponseException('Bad response status code.', $response);
+            }
         } catch (InvalidResponseException $e) {
             if ((401 === $e->getResponse()->getStatusCode() || 403 === $e->getResponse()->getStatusCode())
                 && $this->cache->hasItem($this->cacheKey)

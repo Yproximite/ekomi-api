@@ -97,7 +97,8 @@ class Client
 
         try {
             $response = $this->client->request('POST', sprintf('%s/%s', $this->baseUrl, 'security/login'), [
-                'query' => $params,
+                'headers' => ['Content-Type' => 'application/json'],
+                'json'    => $params,
             ]);
 
             if ($response->getStatusCode() >= 400) {

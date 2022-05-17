@@ -34,7 +34,10 @@ class ClientSpec extends ObjectBehavior
         $responseLogin->toArray()->willReturn(['access_token' => 'access_token']);
 
         $client->request('POST', $requestLoginUri, [
-            'query' => [
+            'headers' => [
+                'Content-Type'  => 'application/json',
+            ],
+            'json' => [
                 'username' => 'username',
                 'password' => 'password',
             ],
@@ -144,7 +147,10 @@ class ClientSpec extends ObjectBehavior
         $responseLogin->toArray()->willReturn([]);
 
         $client->request('POST', $requestLoginUri, [
-            'query'   => [
+            'headers' => [
+                'Content-Type'  => 'application/json',
+            ],
+            'json' => [
                 'username' => 'username',
                 'password' => 'password',
             ],

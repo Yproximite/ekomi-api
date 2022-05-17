@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\Cache\\\\TagAwareCacheInterface\\:\\:hasItem\\(\\)\\.$#"
+			count: 1
+			path: src/Client/Client.php

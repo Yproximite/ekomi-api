@@ -177,10 +177,7 @@ class OrderListMessage implements MessageInterface
         $this->customDataFilter = $customDataFilter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function build()
+    public function build(): array
     {
         return [
             'offset'           => $this->getOffset(),
@@ -188,10 +185,10 @@ class OrderListMessage implements MessageInterface
             'orderBy'          => $this->getOrderBy(),
             'orderDirection'   => $this->getOrderDirection(),
             'withFeedbackOnly' => $this->isWithFeedbackOnly(),
-            'createdFrom'      => $this->getCreatedFrom() ? $this->getCreatedFrom()->format(\DateTime::ATOM) : null,
-            'createdTill'      => $this->getCreatedTill() ? $this->getCreatedTill()->format(\DateTime::ATOM) : null,
+            'createdFrom'      => $this->getCreatedFrom()?->format(\DateTime::ATOM),
+            'createdTill'      => $this->getCreatedTill()?->format(\DateTime::ATOM),
             'shopId'           => $this->getShopId(),
-            'customDataFilter' => $this->getCustomDataFilter() ? json_encode($this->getCustomDataFilter()) : null,
+            'customDataFilter' => null !== $this->getCustomDataFilter() ? json_encode($this->getCustomDataFilter()) : null,
         ];
     }
 }

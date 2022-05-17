@@ -9,9 +9,6 @@ use Yproximite\Ekomi\Api\Factory\ModelFactory;
 
 abstract class AbstractService
 {
-    /**
-     * AbstractService constructor.
-     */
     public function __construct(private Client $client, private ModelFactory $modelFactory)
     {
     }

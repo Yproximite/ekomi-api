@@ -12,18 +12,20 @@ Usage
 -----
 
 ```php
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Adapter\TagAwareAdapter;
+use Symfony\Component\HttpClient\HttpClient;
 use Yproximite\Ekomi\Api\Client\Client;
 use Yproximite\Ekomi\Api\Service\ServiceAggregator;
 use Yproximite\Ekomi\Api\Message\Order\OrderListMessage;
 
 $client = new Client(
-    HttpClient $httpClient,
-    string $clientId = '999999',
-    string $secretKey = 'xxxxxxxxxxxxxx',
-    string $baseUrl = Client::BASE_URL,
-    MessageFactory $messageFactory = null,
-    CacheItemPoolInterface $cache = null
-    string $cacheKey = null
+    HttpClient::create(),
+    new TagAwareAdapter(new FilesystemAdapter()),
+    '999999',                // clientId
+    'xxxxxxxxxxxxxx',        // secretKey
+    Client::BASE_URL,        // baseUrl (optional)
+    Client::CACHE_KEY,       // cacheKey (optional)
 );
 
 $api = new ServiceAggregator($client);

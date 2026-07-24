@@ -17,12 +17,12 @@ class Client
     public const CACHE_KEY = 'yproximite.ekomi.cache_key';
 
     public function __construct(
-        private HttpClientInterface $client,
-        private TagAwareCacheInterface $cache,
-        private string $clientId,
-        private string $secretKey,
-        private string $baseUrl = self::BASE_URL,
-        private string $cacheKey = self::CACHE_KEY
+        private readonly HttpClientInterface $client,
+        private readonly TagAwareCacheInterface $cache,
+        private readonly string $clientId,
+        private readonly string $secretKey,
+        private readonly string $baseUrl = self::BASE_URL,
+        private readonly string $cacheKey = self::CACHE_KEY
     ) {
     }
 

@@ -86,7 +86,7 @@ class Order implements ModelInterface
             ? new \DateTime($data['end_customer_contact_date'])
             : null;
 
-        $this->productIds = array_map('strval', $data['product_ids']);
+        $this->productIds = array_map(strval(...), $data['product_ids']);
         $this->reviewLink = \array_key_exists('review_link', $data) ? (string) $data['review_link'] : null;
         $this->feedback   = new Feedback($data['feedback']);
     }

@@ -1,7 +1,8 @@
 ekomi-api
 =========
-![CI (master)](https://github.com/Yproximite/ZohoSubscription/workflows/CI/badge.svg)
-![](https://img.shields.io/badge/php-%5E8.0-blue)
+![CI (master)](https://github.com/Yproximite/ekomi-api/workflows/CI/badge.svg)
+![](https://img.shields.io/badge/php-%5E8.2-blue)
+![](https://img.shields.io/badge/symfony-%5E6.4%20%7C%7C%20%5E7.4%20%7C%7C%20%5E8.0-black)
 
 PHP Library to get v3 API
 

@@ -23,6 +23,6 @@ class ModelFactory
      */
     public function createMany(string $class, array $list): array
     {
-        return array_map(fn(array $data) => self::create($class, $data), $list);
+        return array_map(fn (array $data) => self::create($class, $data), $list);
     }
 }

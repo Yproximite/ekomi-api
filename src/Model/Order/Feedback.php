@@ -54,9 +54,6 @@ class Feedback implements ModelInterface
         return $this->review;
     }
 
-    /**
-     * @return string
-     */
     public function getComment(): ?string
     {
         return $this->comment;

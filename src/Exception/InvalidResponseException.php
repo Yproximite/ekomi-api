@@ -11,7 +11,7 @@ class InvalidResponseException extends RequestException
     public function __construct(
         string $message,
         private readonly ResponseInterface $response,
-        ?\Exception $previous = null
+        ?\Exception $previous = null,
     ) {
         parent::__construct($message, $previous);
     }

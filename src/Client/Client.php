@@ -22,7 +22,7 @@ class Client
         private readonly string $clientId,
         private readonly string $secretKey,
         private readonly string $baseUrl = self::BASE_URL,
-        private readonly string $cacheKey = self::CACHE_KEY
+        private readonly string $cacheKey = self::CACHE_KEY,
     ) {
     }
 
@@ -44,7 +44,7 @@ class Client
         ];
 
         try {
-            $response = $this->client->request($method, sprintf('%s/%s', $this->baseUrl, $path), [
+            $response = $this->client->request($method, \sprintf('%s/%s', $this->baseUrl, $path), [
                 'headers' => $headers,
                 'query'   => $body,
             ]);
@@ -64,7 +64,7 @@ class Client
             ) {
                 $this->resetApiToken();
 
-                $response = $this->client->request($method, sprintf('%s/%s', $this->baseUrl, $path), [
+                $response = $this->client->request($method, \sprintf('%s/%s', $this->baseUrl, $path), [
                     'headers' => $headers,
                     'query'   => $body,
                 ]);
@@ -96,7 +96,7 @@ class Client
         $params = ['username' => $this->clientId, 'password' => $this->secretKey];
 
         try {
-            $response = $this->client->request('POST', sprintf('%s/%s', $this->baseUrl, 'security/login'), [
+            $response = $this->client->request('POST', \sprintf('%s/%s', $this->baseUrl, 'security/login'), [
                 'headers' => ['Content-Type' => 'application/json'],
                 'json'    => $params,
             ]);
@@ -124,6 +124,6 @@ class Client
 
     private function getAuthorizationHeader(): string
     {
-        return sprintf('ekomi %s', $this->getApiToken());
+        return \sprintf('ekomi %s', $this->getApiToken());
     }
 }

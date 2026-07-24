@@ -22,7 +22,7 @@ class ServiceAggregator
     /**
      * ServiceAggregator constructor.
      */
-    public function __construct(private Client $client)
+    public function __construct(private readonly Client $client)
     {
         $this->modelFactory = new ModelFactory();
     }

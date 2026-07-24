@@ -8,7 +8,7 @@ class RequestException extends \RuntimeException implements ExceptionInterface
 {
     public function __construct(
         string $message,
-        \Exception $previous = null
+        ?\Exception $previous = null,
     ) {
         parent::__construct($message, 0, $previous);
     }

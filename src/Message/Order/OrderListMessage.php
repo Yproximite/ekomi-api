@@ -68,7 +68,7 @@ class OrderListMessage implements MessageInterface
         return $this->offset;
     }
 
-    public function setOffset(int $offset = null)
+    public function setOffset(?int $offset = null)
     {
         $this->offset = $offset;
     }
@@ -81,7 +81,7 @@ class OrderListMessage implements MessageInterface
         return $this->limit;
     }
 
-    public function setLimit(int $limit = null)
+    public function setLimit(?int $limit = null)
     {
         $this->limit = $limit;
     }
@@ -94,7 +94,7 @@ class OrderListMessage implements MessageInterface
         return $this->orderBy;
     }
 
-    public function setOrderBy(string $orderBy = null)
+    public function setOrderBy(?string $orderBy = null)
     {
         $this->orderBy = $orderBy;
     }
@@ -107,7 +107,7 @@ class OrderListMessage implements MessageInterface
         return $this->orderDirection;
     }
 
-    public function setOrderDirection(string $orderDirection = null)
+    public function setOrderDirection(?string $orderDirection = null)
     {
         $this->orderDirection = $orderDirection;
     }
@@ -120,7 +120,7 @@ class OrderListMessage implements MessageInterface
         return $this->withFeedbackOnly;
     }
 
-    public function setWithFeedbackOnly(bool $withFeedbackOnly = null)
+    public function setWithFeedbackOnly(?bool $withFeedbackOnly = null)
     {
         $this->withFeedbackOnly = $withFeedbackOnly;
     }
@@ -133,7 +133,7 @@ class OrderListMessage implements MessageInterface
         return $this->createdFrom;
     }
 
-    public function setCreatedFrom(\DateTime $createdFrom = null)
+    public function setCreatedFrom(?\DateTime $createdFrom = null)
     {
         $this->createdFrom = $createdFrom;
     }
@@ -146,7 +146,7 @@ class OrderListMessage implements MessageInterface
         return $this->createdTill;
     }
 
-    public function setCreatedTill(\DateTime $createdTill = null)
+    public function setCreatedTill(?\DateTime $createdTill = null)
     {
         $this->createdTill = $createdTill;
     }
@@ -159,7 +159,7 @@ class OrderListMessage implements MessageInterface
         return $this->shopId;
     }
 
-    public function setShopId(int $shopId = null)
+    public function setShopId(?int $shopId = null)
     {
         $this->shopId = $shopId;
     }
@@ -172,7 +172,7 @@ class OrderListMessage implements MessageInterface
         return $this->customDataFilter;
     }
 
-    public function setCustomDataFilter(array $customDataFilter = null)
+    public function setCustomDataFilter(?array $customDataFilter = null)
     {
         $this->customDataFilter = $customDataFilter;
     }
